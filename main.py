@@ -41,10 +41,11 @@ def random_phone():
     return "09" + "".join(str(random.randint(0, 9)) for _ in range(8))
 # Generate data
 
-request_cout = 0;
+
 
 def create(number):
-    for _ in range(number+1):
+    request_cout = 0;
+    for _ in range(number):
         header = _header.generate()
         gender = random.choice([0, 1])
         full_name = random_name(gender)
@@ -64,7 +65,7 @@ def create(number):
         response = requests.post('https://api.greenfy.vn/api/v1/register', headers=header, json=json_data)
         if response.status_code == 200:
             request_cout += 1;
-            print(Fore.GREEN + "✅ " + request_cout + ". " + json_data["name"] + Style.RESET_ALL)
+            print(Fore.GREEN + "✅ " + str(request_cout) + ". " + json_data["name"] + Style.RESET_ALL)
 
         else:
             print(Fore.RED + f"❌ Lỗi! Status code: {response.status_code}" + Style.RESET_ALL)
@@ -82,3 +83,4 @@ for i in range(n % num_threads):  # Nếu n không chia hết, phân bổ thêm 
 # Chạy đa luồng
 with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
     executor.map(create, tasks)
+
