@@ -3,7 +3,7 @@ from fake_headers import Headers;
 from colorama import Fore, Style
 
 # Setting
-ma_moi = "oo64Ei" # Nhập mã mời của bạn vào đây
+ma_moi = "sb3Scm" # Nhập mã mời của bạn vào đây
 
 
 
